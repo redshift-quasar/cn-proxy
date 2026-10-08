@@ -1,0 +1,12 @@
+rules:
+  - service: web
+    port: 8001
+    action: allow
+
+  - service: database
+    port: 8002
+    action: deny
+
+  - service: file
+    port: 8003
+    action: allow
