@@ -6,11 +6,13 @@ try:
     from parser import parse_request, MAX_REQUEST_BYTES
     from policy import PolicyEngine
     from logger import get_logger
+    from classifier import inspect as inspect_content
 
 except ImportError:
     from .parser import parse_request, MAX_REQUEST_BYTES
     from .policy import PolicyEngine
     from .logger import get_logger
+    from .classifier import inspect as inspect_content
 
 
 DEFAULT_HOST = "0.0.0.0"
@@ -21,6 +23,7 @@ BUFFER_SIZE = 4096
 BACKLOG = 100
 CLIENT_TIMEOUT = 5      # seconds to wait for a client request
 SERVER_TIMEOUT = 5      # seconds to wait for the backend service
+MAX_RESPONSE_BYTES = 1024 * 1024   # refuse absurdly large backend replies
 
 logger = get_logger()
 
@@ -55,6 +58,7 @@ def forward_to_server(server_host, server_port, request):
         server_sock.sendall(request.encode("utf-8"))
 
         chunks = []
+        received = 0
 
         while True:
 
@@ -64,6 +68,10 @@ def forward_to_server(server_host, server_port, request):
                 break
 
             chunks.append(chunk)
+            received += len(chunk)
+
+            if received > MAX_RESPONSE_BYTES:
+                raise OSError("service response too large")
 
     return b"".join(chunks).decode("utf-8", errors="replace")
 
@@ -133,6 +141,41 @@ def handle_client(conn, address, policy_engine, server_host):
 
                 conn.sendall(b"ERROR: simulated service unavailable\n")
                 return
+
+            if action == "AUTO":
+                # Dynamic decision: look at what the service actually returned.
+                verdict = inspect_content(
+                    response, policy_engine.on_sensitive()
+                )
+
+                if verdict.action == "BLOCK":
+
+                    logger.warning(
+                        "AUTO_BLOCK | client=%s:%s | service=%s | port=%s "
+                        "| found=%s",
+                        client_ip, client_port, service, service_port,
+                        ",".join(verdict.labels),
+                    )
+
+                    conn.sendall(
+                        (
+                            f"BLOCKED: sensitive content detected in "
+                            f"{service} response "
+                            f"({', '.join(verdict.labels)})\n"
+                        ).encode("utf-8")
+                    )
+                    return
+
+                if verdict.action == "REDACT":
+
+                    logger.warning(
+                        "AUTO_REDACT | client=%s:%s | service=%s | port=%s "
+                        "| found=%s",
+                        client_ip, client_port, service, service_port,
+                        ",".join(verdict.labels),
+                    )
+
+                response = verdict.text
 
             conn.sendall(response.encode("utf-8"))
 

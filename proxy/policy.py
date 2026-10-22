@@ -2,11 +2,15 @@ from pathlib import Path
 import threading
 import yaml
 
+VALID_ACTIONS = {"ALLOW", "DENY", "AUTO"}
+
 
 class PolicyEngine:
     """Loads ALLOW/DENY rules from YAML and hot-reloads them when the file changes.
 
-    - Unknown (service, port) pairs are DENIED (default deny).
+    - Actions: ALLOW (forward, no inspection), DENY (block), AUTO (forward,
+      then inspect the response and block/redact it if it is sensitive).
+    - Unknown (service, port) pairs get `default_action` (default DENY).
     - If the file becomes invalid at runtime, the last good rules are kept.
     - Listeners registered with add_listener() are called as
       listener(service, port, old_action, new_action) whenever a rule is
@@ -29,6 +33,7 @@ class PolicyEngine:
         self._lock = threading.RLock()
         self._mtime_ns = None
         self._rules = {}
+        self._settings = {"default_action": "DENY", "on_sensitive": "block"}
         self._listeners = []
 
         # First load must succeed, otherwise fail loudly at startup.
@@ -43,7 +48,27 @@ class PolicyEngine:
     @staticmethod
     def _parse(data):
 
-        rules = (data or {}).get("rules", [])
+        data = data or {}
+
+        if not isinstance(data, dict):
+            raise ValueError("Policy file must be a mapping")
+
+        default_action = str(data.get("default_action", "deny")).upper()
+
+        if default_action not in VALID_ACTIONS:
+            raise ValueError("default_action must be ALLOW, DENY or AUTO")
+
+        inspection = data.get("inspection") or {}
+
+        if not isinstance(inspection, dict):
+            raise ValueError("'inspection' must be a mapping")
+
+        on_sensitive = str(inspection.get("on_sensitive", "block")).lower()
+
+        if on_sensitive not in {"block", "redact"}:
+            raise ValueError("inspection.on_sensitive must be block or redact")
+
+        rules = data.get("rules", [])
 
         if not isinstance(rules, list):
             raise ValueError("'rules' must be a list")
@@ -69,14 +94,17 @@ class PolicyEngine:
             if not 1 <= port <= 65535:
                 raise ValueError(f"Rule #{index + 1}: port out of range")
 
-            if action not in {"ALLOW", "DENY"}:
+            if action not in VALID_ACTIONS:
                 raise ValueError(
-                    f"Rule #{index + 1}: action must be ALLOW or DENY"
+                    f"Rule #{index + 1}: action must be ALLOW, DENY or AUTO"
                 )
 
             new_rules[(service, port)] = action
 
-        return new_rules
+        return new_rules, {
+            "default_action": default_action,
+            "on_sensitive": on_sensitive,
+        }
 
     def _load(self, initial=False):
 
@@ -99,10 +127,11 @@ class PolicyEngine:
             with self.config_path.open("r", encoding="utf-8") as file:
                 data = yaml.safe_load(file)
 
-            new_rules = self._parse(data)
+            new_rules, new_settings = self._parse(data)
 
             old_rules = self._rules
             self._rules = new_rules
+            self._settings = new_settings
 
             if not initial:
                 self._notify(old_rules, new_rules)
@@ -149,7 +178,18 @@ class PolicyEngine:
         self._reload_if_needed()
 
         with self._lock:
-            return self._rules.get((str(service).lower(), int(port)), "DENY")
+            return self._rules.get(
+                (str(service).lower(), int(port)),
+                self._settings["default_action"],
+            )
+
+    def on_sensitive(self):
+        """'block' or 'redact': what to do when AUTO inspection fires."""
+
+        self._reload_if_needed()
+
+        with self._lock:
+            return self._settings["on_sensitive"]
 
     def rules(self):
 

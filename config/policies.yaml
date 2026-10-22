@@ -1,12 +1,21 @@
+# Actions:
+#   allow - forward, no inspection
+#   deny  - always block
+#   auto  - forward, inspect the service's response, block/redact if sensitive
+default_action: deny        # for services not listed below
+
+inspection:
+  on_sensitive: block       # block | redact
+
 rules:
   - service: web
     port: 8001
-    action: allow
+    action: auto
 
   - service: database
     port: 8002
-    action: deny
+    action: auto
 
   - service: file
     port: 8003
-    action: allow
+    action: auto
