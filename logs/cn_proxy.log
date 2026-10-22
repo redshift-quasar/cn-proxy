@@ -206,3 +206,274 @@
 2026-10-22 09:37:28,489 | INFO | Thread-205 (handle_client) | ALLOW | client=127.0.0.1:50107 | service=file | port=8003
 2026-10-22 09:38:02,208 | INFO | Thread-206 (handle_client) | ALLOW | client=127.0.0.1:50157 | service=web | port=8001
 2026-10-22 09:38:02,209 | ERROR | Thread-206 (handle_client) | SERVER_ERROR | service=web | port=8001 | error=[Errno 61] Connection refused
+2026-10-22 20:44:24,982 | INFO | MainThread | TCP proxy listening on 0.0.0.0:9000; server=127.0.0.1
+2026-10-22 20:44:39,349 | INFO | Thread-1 (handle_client) | AUTO | client=127.0.0.1:51848 | service=web | port=8001
+2026-10-22 20:44:39,377 | INFO | Thread-2 (handle_client) | AUTO | client=127.0.0.1:51850 | service=file | port=8003
+2026-10-22 20:44:39,405 | INFO | Thread-3 (handle_client) | AUTO | client=127.0.0.1:51852 | service=database | port=8002
+2026-10-22 20:44:39,405 | WARNING | Thread-3 (handle_client) | AUTO_BLOCK | client=127.0.0.1:51852 | service=database | port=8002 | found=credential,credit_card,email,us_ssn
+2026-10-22 20:46:09,791 | INFO | Thread-4 (handle_client) | AUTO | client=127.0.0.1:51887 | service=file | port=8003
+2026-10-22 20:46:09,792 | INFO | Thread-5 (handle_client) | AUTO | client=127.0.0.1:51888 | service=web | port=8001
+2026-10-22 20:46:09,792 | INFO | Thread-6 (handle_client) | AUTO | client=127.0.0.1:51889 | service=database | port=8002
+2026-10-22 20:46:09,792 | INFO | Thread-7 (handle_client) | AUTO | client=127.0.0.1:51890 | service=web | port=8001
+2026-10-22 20:46:09,793 | INFO | Thread-8 (handle_client) | AUTO | client=127.0.0.1:51891 | service=file | port=8003
+2026-10-22 20:46:09,793 | INFO | Thread-9 (handle_client) | AUTO | client=127.0.0.1:51892 | service=database | port=8002
+2026-10-22 20:46:09,793 | WARNING | Thread-6 (handle_client) | AUTO_BLOCK | client=127.0.0.1:51889 | service=database | port=8002 | found=credential,credit_card,email,us_ssn
+2026-10-22 20:46:09,793 | INFO | Thread-10 (handle_client) | AUTO | client=127.0.0.1:51893 | service=web | port=8001
+2026-10-22 20:46:09,793 | INFO | Thread-11 (handle_client) | AUTO | client=127.0.0.1:51894 | service=file | port=8003
+2026-10-22 20:46:09,793 | INFO | Thread-12 (handle_client) | AUTO | client=127.0.0.1:51895 | service=web | port=8001
+2026-10-22 20:46:09,794 | WARNING | Thread-9 (handle_client) | AUTO_BLOCK | client=127.0.0.1:51892 | service=database | port=8002 | found=credential,credit_card,email,us_ssn
+2026-10-22 20:46:09,794 | INFO | Thread-13 (handle_client) | AUTO | client=127.0.0.1:51896 | service=file | port=8003
+2026-10-22 20:46:09,794 | INFO | Thread-14 (handle_client) | AUTO | client=127.0.0.1:51897 | service=database | port=8002
+2026-10-22 20:46:09,794 | INFO | Thread-15 (handle_client) | AUTO | client=127.0.0.1:51898 | service=database | port=8002
+2026-10-22 20:46:09,794 | INFO | Thread-16 (handle_client) | AUTO | client=127.0.0.1:51899 | service=web | port=8001
+2026-10-22 20:46:09,794 | INFO | Thread-17 (handle_client) | AUTO | client=127.0.0.1:51900 | service=file | port=8003
+2026-10-22 20:46:09,795 | INFO | Thread-18 (handle_client) | AUTO | client=127.0.0.1:51901 | service=database | port=8002
+2026-10-22 20:46:09,795 | WARNING | Thread-14 (handle_client) | AUTO_BLOCK | client=127.0.0.1:51897 | service=database | port=8002 | found=credential,credit_card,email,us_ssn
+2026-10-22 20:46:09,795 | WARNING | Thread-15 (handle_client) | AUTO_BLOCK | client=127.0.0.1:51898 | service=database | port=8002 | found=credential,credit_card,email,us_ssn
+2026-10-22 20:46:09,795 | INFO | Thread-19 (handle_client) | AUTO | client=127.0.0.1:51902 | service=web | port=8001
+2026-10-22 20:46:09,795 | INFO | Thread-20 (handle_client) | AUTO | client=127.0.0.1:51903 | service=file | port=8003
+2026-10-22 20:46:09,796 | WARNING | Thread-18 (handle_client) | AUTO_BLOCK | client=127.0.0.1:51901 | service=database | port=8002 | found=credential,credit_card,email,us_ssn
+2026-10-22 20:46:09,796 | INFO | Thread-22 (handle_client) | AUTO | client=127.0.0.1:51905 | service=web | port=8001
+2026-10-22 20:46:09,796 | INFO | Thread-21 (handle_client) | AUTO | client=127.0.0.1:51904 | service=database | port=8002
+2026-10-22 20:46:09,796 | INFO | Thread-23 (handle_client) | AUTO | client=127.0.0.1:51906 | service=file | port=8003
+2026-10-22 20:46:09,796 | INFO | Thread-24 (handle_client) | AUTO | client=127.0.0.1:51907 | service=database | port=8002
+2026-10-22 20:46:09,796 | INFO | Thread-25 (handle_client) | AUTO | client=127.0.0.1:51908 | service=file | port=8003
+2026-10-22 20:46:09,797 | INFO | Thread-26 (handle_client) | AUTO | client=127.0.0.1:51909 | service=web | port=8001
+2026-10-22 20:46:09,797 | WARNING | Thread-21 (handle_client) | AUTO_BLOCK | client=127.0.0.1:51904 | service=database | port=8002 | found=credential,credit_card,email,us_ssn
+2026-10-22 20:46:09,797 | INFO | Thread-27 (handle_client) | AUTO | client=127.0.0.1:51910 | service=database | port=8002
+2026-10-22 20:46:09,798 | WARNING | Thread-24 (handle_client) | AUTO_BLOCK | client=127.0.0.1:51907 | service=database | port=8002 | found=credential,credit_card,email,us_ssn
+2026-10-22 20:46:09,798 | INFO | Thread-28 (handle_client) | AUTO | client=127.0.0.1:51911 | service=web | port=8001
+2026-10-22 20:46:09,798 | INFO | Thread-29 (handle_client) | AUTO | client=127.0.0.1:51912 | service=database | port=8002
+2026-10-22 20:46:09,799 | WARNING | Thread-27 (handle_client) | AUTO_BLOCK | client=127.0.0.1:51910 | service=database | port=8002 | found=credential,credit_card,email,us_ssn
+2026-10-22 20:46:09,799 | INFO | Thread-30 (handle_client) | AUTO | client=127.0.0.1:51913 | service=file | port=8003
+2026-10-22 20:46:09,799 | INFO | Thread-31 (handle_client) | AUTO | client=127.0.0.1:51914 | service=web | port=8001
+2026-10-22 20:46:09,799 | INFO | Thread-32 (handle_client) | AUTO | client=127.0.0.1:51915 | service=web | port=8001
+2026-10-22 20:46:09,799 | WARNING | Thread-29 (handle_client) | AUTO_BLOCK | client=127.0.0.1:51912 | service=database | port=8002 | found=credential,credit_card,email,us_ssn
+2026-10-22 20:46:09,799 | INFO | Thread-33 (handle_client) | AUTO | client=127.0.0.1:51916 | service=file | port=8003
+2026-10-22 20:46:09,799 | INFO | Thread-34 (handle_client) | AUTO | client=127.0.0.1:51917 | service=database | port=8002
+2026-10-22 20:46:09,800 | INFO | Thread-35 (handle_client) | AUTO | client=127.0.0.1:51918 | service=database | port=8002
+2026-10-22 20:46:09,800 | INFO | Thread-36 (handle_client) | AUTO | client=127.0.0.1:51919 | service=file | port=8003
+2026-10-22 20:46:09,800 | INFO | Thread-37 (handle_client) | AUTO | client=127.0.0.1:51920 | service=web | port=8001
+2026-10-22 20:46:09,800 | WARNING | Thread-35 (handle_client) | AUTO_BLOCK | client=127.0.0.1:51918 | service=database | port=8002 | found=credential,credit_card,email,us_ssn
+2026-10-22 20:46:09,800 | INFO | Thread-38 (handle_client) | AUTO | client=127.0.0.1:51921 | service=web | port=8001
+2026-10-22 20:46:09,801 | INFO | Thread-39 (handle_client) | AUTO | client=127.0.0.1:51922 | service=file | port=8003
+2026-10-22 20:46:09,801 | WARNING | Thread-34 (handle_client) | AUTO_BLOCK | client=127.0.0.1:51917 | service=database | port=8002 | found=credential,credit_card,email,us_ssn
+2026-10-22 20:46:09,801 | INFO | Thread-40 (handle_client) | AUTO | client=127.0.0.1:51923 | service=database | port=8002
+2026-10-22 20:46:09,801 | INFO | Thread-41 (handle_client) | AUTO | client=127.0.0.1:51924 | service=file | port=8003
+2026-10-22 20:46:09,802 | INFO | Thread-42 (handle_client) | AUTO | client=127.0.0.1:51925 | service=database | port=8002
+2026-10-22 20:46:09,802 | WARNING | Thread-40 (handle_client) | AUTO_BLOCK | client=127.0.0.1:51923 | service=database | port=8002 | found=credential,credit_card,email,us_ssn
+2026-10-22 20:46:09,802 | INFO | Thread-43 (handle_client) | AUTO | client=127.0.0.1:51926 | service=file | port=8003
+2026-10-22 20:46:09,802 | INFO | Thread-44 (handle_client) | AUTO | client=127.0.0.1:51927 | service=web | port=8001
+2026-10-22 20:46:09,803 | INFO | Thread-45 (handle_client) | AUTO | client=127.0.0.1:51928 | service=web | port=8001
+2026-10-22 20:46:09,803 | INFO | Thread-46 (handle_client) | AUTO | client=127.0.0.1:51929 | service=database | port=8002
+2026-10-22 20:46:09,803 | INFO | Thread-47 (handle_client) | AUTO | client=127.0.0.1:51930 | service=file | port=8003
+2026-10-22 20:46:09,803 | INFO | Thread-48 (handle_client) | AUTO | client=127.0.0.1:51931 | service=web | port=8001
+2026-10-22 20:46:09,803 | WARNING | Thread-42 (handle_client) | AUTO_BLOCK | client=127.0.0.1:51925 | service=database | port=8002 | found=credential,credit_card,email,us_ssn
+2026-10-22 20:46:09,803 | WARNING | Thread-46 (handle_client) | AUTO_BLOCK | client=127.0.0.1:51929 | service=database | port=8002 | found=credential,credit_card,email,us_ssn
+2026-10-22 20:46:09,804 | INFO | Thread-49 (handle_client) | AUTO | client=127.0.0.1:51932 | service=database | port=8002
+2026-10-22 20:46:09,804 | INFO | Thread-50 (handle_client) | AUTO | client=127.0.0.1:51933 | service=database | port=8002
+2026-10-22 20:46:09,804 | INFO | Thread-51 (handle_client) | AUTO | client=127.0.0.1:51934 | service=file | port=8003
+2026-10-22 20:46:09,804 | WARNING | Thread-49 (handle_client) | AUTO_BLOCK | client=127.0.0.1:51932 | service=database | port=8002 | found=credential,credit_card,email,us_ssn
+2026-10-22 20:46:09,804 | INFO | Thread-52 (handle_client) | AUTO | client=127.0.0.1:51935 | service=web | port=8001
+2026-10-22 20:46:09,805 | WARNING | Thread-50 (handle_client) | AUTO_BLOCK | client=127.0.0.1:51933 | service=database | port=8002 | found=credential,credit_card,email,us_ssn
+2026-10-22 20:46:09,805 | INFO | Thread-53 (handle_client) | AUTO | client=127.0.0.1:51936 | service=file | port=8003
+2026-10-22 20:46:09,805 | INFO | Thread-54 (handle_client) | AUTO | client=127.0.0.1:51941 | service=database | port=8002
+2026-10-22 20:46:09,805 | INFO | Thread-55 (handle_client) | AUTO | client=127.0.0.1:51944 | service=web | port=8001
+2026-10-22 20:46:09,805 | INFO | Thread-56 (handle_client) | AUTO | client=127.0.0.1:51946 | service=file | port=8003
+2026-10-22 20:46:09,805 | INFO | Thread-57 (handle_client) | AUTO | client=127.0.0.1:51947 | service=database | port=8002
+2026-10-22 20:46:09,805 | WARNING | Thread-54 (handle_client) | AUTO_BLOCK | client=127.0.0.1:51941 | service=database | port=8002 | found=credential,credit_card,email,us_ssn
+2026-10-22 20:46:09,806 | INFO | Thread-58 (handle_client) | AUTO | client=127.0.0.1:51950 | service=web | port=8001
+2026-10-22 20:46:09,806 | INFO | Thread-59 (handle_client) | AUTO | client=127.0.0.1:51951 | service=file | port=8003
+2026-10-22 20:46:09,806 | INFO | Thread-60 (handle_client) | AUTO | client=127.0.0.1:51953 | service=database | port=8002
+2026-10-22 20:46:09,806 | WARNING | Thread-57 (handle_client) | AUTO_BLOCK | client=127.0.0.1:51947 | service=database | port=8002 | found=credential,credit_card,email,us_ssn
+2026-10-22 20:46:09,806 | INFO | Thread-61 (handle_client) | AUTO | client=127.0.0.1:51956 | service=web | port=8001
+2026-10-22 20:46:09,806 | INFO | Thread-62 (handle_client) | AUTO | client=127.0.0.1:51957 | service=file | port=8003
+2026-10-22 20:46:09,807 | INFO | Thread-63 (handle_client) | AUTO | client=127.0.0.1:51959 | service=database | port=8002
+2026-10-22 20:46:09,807 | WARNING | Thread-60 (handle_client) | AUTO_BLOCK | client=127.0.0.1:51953 | service=database | port=8002 | found=credential,credit_card,email,us_ssn
+2026-10-22 20:46:09,807 | INFO | Thread-64 (handle_client) | AUTO | client=127.0.0.1:51962 | service=web | port=8001
+2026-10-22 20:46:09,808 | INFO | Thread-65 (handle_client) | AUTO | client=127.0.0.1:51963 | service=file | port=8003
+2026-10-22 20:46:09,808 | INFO | Thread-66 (handle_client) | AUTO | client=127.0.0.1:51964 | service=database | port=8002
+2026-10-22 20:46:09,808 | WARNING | Thread-63 (handle_client) | AUTO_BLOCK | client=127.0.0.1:51959 | service=database | port=8002 | found=credential,credit_card,email,us_ssn
+2026-10-22 20:46:09,809 | INFO | Thread-67 (handle_client) | AUTO | client=127.0.0.1:51965 | service=web | port=8001
+2026-10-22 20:46:09,809 | INFO | Thread-68 (handle_client) | AUTO | client=127.0.0.1:51967 | service=file | port=8003
+2026-10-22 20:46:09,810 | WARNING | Thread-66 (handle_client) | AUTO_BLOCK | client=127.0.0.1:51964 | service=database | port=8002 | found=credential,credit_card,email,us_ssn
+2026-10-22 20:46:09,810 | INFO | Thread-69 (handle_client) | AUTO | client=127.0.0.1:51972 | service=database | port=8002
+2026-10-22 20:46:09,810 | INFO | Thread-70 (handle_client) | AUTO | client=127.0.0.1:51975 | service=web | port=8001
+2026-10-22 20:46:09,811 | INFO | Thread-71 (handle_client) | AUTO | client=127.0.0.1:51977 | service=file | port=8003
+2026-10-22 20:46:09,811 | INFO | Thread-72 (handle_client) | AUTO | client=127.0.0.1:51978 | service=database | port=8002
+2026-10-22 20:46:09,811 | INFO | Thread-73 (handle_client) | AUTO | client=127.0.0.1:51979 | service=web | port=8001
+2026-10-22 20:46:09,811 | WARNING | Thread-69 (handle_client) | AUTO_BLOCK | client=127.0.0.1:51972 | service=database | port=8002 | found=credential,credit_card,email,us_ssn
+2026-10-22 20:46:09,812 | INFO | Thread-74 (handle_client) | AUTO | client=127.0.0.1:51981 | service=file | port=8003
+2026-10-22 20:46:09,812 | WARNING | Thread-72 (handle_client) | AUTO_BLOCK | client=127.0.0.1:51978 | service=database | port=8002 | found=credential,credit_card,email,us_ssn
+2026-10-22 20:46:09,812 | INFO | Thread-75 (handle_client) | AUTO | client=127.0.0.1:51982 | service=database | port=8002
+2026-10-22 20:46:09,812 | INFO | Thread-76 (handle_client) | AUTO | client=127.0.0.1:51983 | service=web | port=8001
+2026-10-22 20:46:09,812 | INFO | Thread-77 (handle_client) | AUTO | client=127.0.0.1:51986 | service=file | port=8003
+2026-10-22 20:46:09,813 | INFO | Thread-78 (handle_client) | AUTO | client=127.0.0.1:51989 | service=database | port=8002
+2026-10-22 20:46:09,813 | WARNING | Thread-75 (handle_client) | AUTO_BLOCK | client=127.0.0.1:51982 | service=database | port=8002 | found=credential,credit_card,email,us_ssn
+2026-10-22 20:46:09,813 | INFO | Thread-79 (handle_client) | AUTO | client=127.0.0.1:51991 | service=web | port=8001
+2026-10-22 20:46:09,813 | INFO | Thread-80 (handle_client) | AUTO | client=127.0.0.1:51993 | service=file | port=8003
+2026-10-22 20:46:09,813 | INFO | Thread-81 (handle_client) | AUTO | client=127.0.0.1:51996 | service=database | port=8002
+2026-10-22 20:46:09,814 | INFO | Thread-82 (handle_client) | AUTO | client=127.0.0.1:51998 | service=web | port=8001
+2026-10-22 20:46:09,814 | WARNING | Thread-78 (handle_client) | AUTO_BLOCK | client=127.0.0.1:51989 | service=database | port=8002 | found=credential,credit_card,email,us_ssn
+2026-10-22 20:46:09,814 | INFO | Thread-83 (handle_client) | AUTO | client=127.0.0.1:51999 | service=file | port=8003
+2026-10-22 20:46:09,814 | INFO | Thread-84 (handle_client) | AUTO | client=127.0.0.1:52002 | service=database | port=8002
+2026-10-22 20:46:09,814 | WARNING | Thread-81 (handle_client) | AUTO_BLOCK | client=127.0.0.1:51996 | service=database | port=8002 | found=credential,credit_card,email,us_ssn
+2026-10-22 20:46:09,814 | INFO | Thread-85 (handle_client) | AUTO | client=127.0.0.1:52003 | service=web | port=8001
+2026-10-22 20:46:09,815 | INFO | Thread-86 (handle_client) | AUTO | client=127.0.0.1:52005 | service=file | port=8003
+2026-10-22 20:46:09,815 | INFO | Thread-87 (handle_client) | AUTO | client=127.0.0.1:52006 | service=database | port=8002
+2026-10-22 20:46:09,815 | WARNING | Thread-84 (handle_client) | AUTO_BLOCK | client=127.0.0.1:52002 | service=database | port=8002 | found=credential,credit_card,email,us_ssn
+2026-10-22 20:46:09,815 | INFO | Thread-88 (handle_client) | AUTO | client=127.0.0.1:52008 | service=web | port=8001
+2026-10-22 20:46:09,815 | INFO | Thread-89 (handle_client) | AUTO | client=127.0.0.1:52010 | service=file | port=8003
+2026-10-22 20:46:09,816 | WARNING | Thread-87 (handle_client) | AUTO_BLOCK | client=127.0.0.1:52006 | service=database | port=8002 | found=credential,credit_card,email,us_ssn
+2026-10-22 20:46:09,816 | INFO | Thread-90 (handle_client) | AUTO | client=127.0.0.1:52012 | service=database | port=8002
+2026-10-22 20:46:09,816 | INFO | Thread-91 (handle_client) | AUTO | client=127.0.0.1:52015 | service=web | port=8001
+2026-10-22 20:46:09,816 | INFO | Thread-92 (handle_client) | AUTO | client=127.0.0.1:52018 | service=file | port=8003
+2026-10-22 20:46:09,816 | INFO | Thread-93 (handle_client) | AUTO | client=127.0.0.1:52020 | service=database | port=8002
+2026-10-22 20:46:09,816 | WARNING | Thread-90 (handle_client) | AUTO_BLOCK | client=127.0.0.1:52012 | service=database | port=8002 | found=credential,credit_card,email,us_ssn
+2026-10-22 20:46:09,817 | INFO | Thread-94 (handle_client) | AUTO | client=127.0.0.1:52022 | service=web | port=8001
+2026-10-22 20:46:09,817 | INFO | Thread-95 (handle_client) | AUTO | client=127.0.0.1:52023 | service=file | port=8003
+2026-10-22 20:46:09,817 | INFO | Thread-96 (handle_client) | AUTO | client=127.0.0.1:52025 | service=database | port=8002
+2026-10-22 20:46:09,817 | WARNING | Thread-93 (handle_client) | AUTO_BLOCK | client=127.0.0.1:52020 | service=database | port=8002 | found=credential,credit_card,email,us_ssn
+2026-10-22 20:46:09,817 | INFO | Thread-97 (handle_client) | AUTO | client=127.0.0.1:52026 | service=web | port=8001
+2026-10-22 20:46:09,817 | INFO | Thread-98 (handle_client) | AUTO | client=127.0.0.1:52028 | service=file | port=8003
+2026-10-22 20:46:09,818 | INFO | Thread-99 (handle_client) | AUTO | client=127.0.0.1:52030 | service=database | port=8002
+2026-10-22 20:46:09,818 | WARNING | Thread-96 (handle_client) | AUTO_BLOCK | client=127.0.0.1:52025 | service=database | port=8002 | found=credential,credit_card,email,us_ssn
+2026-10-22 20:46:09,818 | INFO | Thread-100 (handle_client) | AUTO | client=127.0.0.1:52033 | service=web | port=8001
+2026-10-22 20:46:09,818 | INFO | Thread-101 (handle_client) | AUTO | client=127.0.0.1:52035 | service=file | port=8003
+2026-10-22 20:46:09,819 | WARNING | Thread-99 (handle_client) | AUTO_BLOCK | client=127.0.0.1:52030 | service=database | port=8002 | found=credential,credit_card,email,us_ssn
+2026-10-22 20:46:09,819 | INFO | Thread-102 (handle_client) | AUTO | client=127.0.0.1:52037 | service=database | port=8002
+2026-10-22 20:46:09,819 | INFO | Thread-103 (handle_client) | AUTO | client=127.0.0.1:52039 | service=web | port=8001
+2026-10-22 20:46:09,819 | INFO | Thread-104 (handle_client) | AUTO | client=127.0.0.1:52041 | service=file | port=8003
+2026-10-22 20:46:09,819 | INFO | Thread-105 (handle_client) | AUTO | client=127.0.0.1:52043 | service=database | port=8002
+2026-10-22 20:46:09,820 | WARNING | Thread-102 (handle_client) | AUTO_BLOCK | client=127.0.0.1:52037 | service=database | port=8002 | found=credential,credit_card,email,us_ssn
+2026-10-22 20:46:09,820 | INFO | Thread-106 (handle_client) | AUTO | client=127.0.0.1:52045 | service=web | port=8001
+2026-10-22 20:46:09,820 | INFO | Thread-107 (handle_client) | AUTO | client=127.0.0.1:52047 | service=file | port=8003
+2026-10-22 20:46:09,820 | WARNING | Thread-105 (handle_client) | AUTO_BLOCK | client=127.0.0.1:52043 | service=database | port=8002 | found=credential,credit_card,email,us_ssn
+2026-10-22 20:46:09,820 | INFO | Thread-108 (handle_client) | AUTO | client=127.0.0.1:52048 | service=database | port=8002
+2026-10-22 20:46:09,821 | INFO | Thread-109 (handle_client) | AUTO | client=127.0.0.1:52051 | service=web | port=8001
+2026-10-22 20:46:09,821 | INFO | Thread-110 (handle_client) | AUTO | client=127.0.0.1:52053 | service=file | port=8003
+2026-10-22 20:46:09,821 | INFO | Thread-111 (handle_client) | AUTO | client=127.0.0.1:52055 | service=database | port=8002
+2026-10-22 20:46:09,821 | INFO | Thread-112 (handle_client) | AUTO | client=127.0.0.1:52057 | service=web | port=8001
+2026-10-22 20:46:09,822 | WARNING | Thread-111 (handle_client) | AUTO_BLOCK | client=127.0.0.1:52055 | service=database | port=8002 | found=credential,credit_card,email,us_ssn
+2026-10-22 20:46:09,822 | INFO | Thread-114 (handle_client) | AUTO | client=127.0.0.1:52060 | service=database | port=8002
+2026-10-22 20:46:09,822 | INFO | Thread-113 (handle_client) | AUTO | client=127.0.0.1:52059 | service=file | port=8003
+2026-10-22 20:46:09,822 | INFO | Thread-115 (handle_client) | AUTO | client=127.0.0.1:52063 | service=web | port=8001
+2026-10-22 20:46:09,822 | WARNING | Thread-108 (handle_client) | AUTO_BLOCK | client=127.0.0.1:52048 | service=database | port=8002 | found=credential,credit_card,email,us_ssn
+2026-10-22 20:46:09,822 | INFO | Thread-116 (handle_client) | AUTO | client=127.0.0.1:52064 | service=file | port=8003
+2026-10-22 20:46:09,823 | INFO | Thread-117 (handle_client) | AUTO | client=127.0.0.1:52067 | service=database | port=8002
+2026-10-22 20:46:09,823 | INFO | Thread-118 (handle_client) | AUTO | client=127.0.0.1:52068 | service=web | port=8001
+2026-10-22 20:46:09,823 | INFO | Thread-120 (handle_client) | AUTO | client=127.0.0.1:52074 | service=database | port=8002
+2026-10-22 20:46:09,823 | INFO | Thread-119 (handle_client) | AUTO | client=127.0.0.1:52072 | service=file | port=8003
+2026-10-22 20:46:09,823 | INFO | Thread-121 (handle_client) | AUTO | client=127.0.0.1:52075 | service=web | port=8001
+2026-10-22 20:46:09,824 | WARNING | Thread-114 (handle_client) | AUTO_BLOCK | client=127.0.0.1:52060 | service=database | port=8002 | found=credential,credit_card,email,us_ssn
+2026-10-22 20:46:09,824 | INFO | Thread-122 (handle_client) | AUTO | client=127.0.0.1:52077 | service=file | port=8003
+2026-10-22 20:46:09,824 | WARNING | Thread-117 (handle_client) | AUTO_BLOCK | client=127.0.0.1:52067 | service=database | port=8002 | found=credential,credit_card,email,us_ssn
+2026-10-22 20:46:09,825 | WARNING | Thread-120 (handle_client) | AUTO_BLOCK | client=127.0.0.1:52074 | service=database | port=8002 | found=credential,credit_card,email,us_ssn
+2026-10-22 20:46:09,825 | INFO | Thread-123 (handle_client) | AUTO | client=127.0.0.1:52078 | service=database | port=8002
+2026-10-22 20:46:09,825 | INFO | Thread-124 (handle_client) | AUTO | client=127.0.0.1:52080 | service=web | port=8001
+2026-10-22 20:46:09,826 | INFO | Thread-126 (handle_client) | AUTO | client=127.0.0.1:52086 | service=database | port=8002
+2026-10-22 20:46:09,826 | INFO | Thread-125 (handle_client) | AUTO | client=127.0.0.1:52084 | service=file | port=8003
+2026-10-22 20:46:09,826 | INFO | Thread-127 (handle_client) | AUTO | client=127.0.0.1:52088 | service=web | port=8001
+2026-10-22 20:46:09,826 | INFO | Thread-129 (handle_client) | AUTO | client=127.0.0.1:52091 | service=database | port=8002
+2026-10-22 20:46:09,826 | INFO | Thread-128 (handle_client) | AUTO | client=127.0.0.1:52089 | service=file | port=8003
+2026-10-22 20:46:09,827 | INFO | Thread-130 (handle_client) | AUTO | client=127.0.0.1:52093 | service=web | port=8001
+2026-10-22 20:46:09,827 | INFO | Thread-131 (handle_client) | AUTO | client=127.0.0.1:52095 | service=file | port=8003
+2026-10-22 20:46:09,827 | INFO | Thread-132 (handle_client) | AUTO | client=127.0.0.1:52097 | service=database | port=8002
+2026-10-22 20:46:09,827 | WARNING | Thread-123 (handle_client) | AUTO_BLOCK | client=127.0.0.1:52078 | service=database | port=8002 | found=credential,credit_card,email,us_ssn
+2026-10-22 20:46:09,828 | WARNING | Thread-126 (handle_client) | AUTO_BLOCK | client=127.0.0.1:52086 | service=database | port=8002 | found=credential,credit_card,email,us_ssn
+2026-10-22 20:46:09,828 | INFO | Thread-134 (handle_client) | AUTO | client=127.0.0.1:52101 | service=file | port=8003
+2026-10-22 20:46:09,828 | INFO | Thread-133 (handle_client) | AUTO | client=127.0.0.1:52099 | service=web | port=8001
+2026-10-22 20:46:09,828 | WARNING | Thread-129 (handle_client) | AUTO_BLOCK | client=127.0.0.1:52091 | service=database | port=8002 | found=credential,credit_card,email,us_ssn
+2026-10-22 20:46:09,828 | INFO | Thread-135 (handle_client) | AUTO | client=127.0.0.1:52103 | service=database | port=8002
+2026-10-22 20:46:09,829 | INFO | Thread-136 (handle_client) | AUTO | client=127.0.0.1:52105 | service=web | port=8001
+2026-10-22 20:46:09,829 | INFO | Thread-137 (handle_client) | AUTO | client=127.0.0.1:52106 | service=file | port=8003
+2026-10-22 20:46:09,829 | WARNING | Thread-132 (handle_client) | AUTO_BLOCK | client=127.0.0.1:52097 | service=database | port=8002 | found=credential,credit_card,email,us_ssn
+2026-10-22 20:46:09,829 | INFO | Thread-138 (handle_client) | AUTO | client=127.0.0.1:52109 | service=database | port=8002
+2026-10-22 20:46:09,829 | INFO | Thread-139 (handle_client) | AUTO | client=127.0.0.1:52111 | service=web | port=8001
+2026-10-22 20:46:09,830 | INFO | Thread-140 (handle_client) | AUTO | client=127.0.0.1:52113 | service=file | port=8003
+2026-10-22 20:46:09,830 | INFO | Thread-142 (handle_client) | AUTO | client=127.0.0.1:52116 | service=web | port=8001
+2026-10-22 20:46:09,830 | INFO | Thread-141 (handle_client) | AUTO | client=127.0.0.1:52114 | service=database | port=8002
+2026-10-22 20:46:09,830 | INFO | Thread-143 (handle_client) | AUTO | client=127.0.0.1:52119 | service=file | port=8003
+2026-10-22 20:46:09,830 | WARNING | Thread-135 (handle_client) | AUTO_BLOCK | client=127.0.0.1:52103 | service=database | port=8002 | found=credential,credit_card,email,us_ssn
+2026-10-22 20:46:09,831 | INFO | Thread-144 (handle_client) | AUTO | client=127.0.0.1:52121 | service=database | port=8002
+2026-10-22 20:46:09,831 | INFO | Thread-145 (handle_client) | AUTO | client=127.0.0.1:52123 | service=web | port=8001
+2026-10-22 20:46:09,831 | WARNING | Thread-138 (handle_client) | AUTO_BLOCK | client=127.0.0.1:52109 | service=database | port=8002 | found=credential,credit_card,email,us_ssn
+2026-10-22 20:46:09,832 | WARNING | Thread-141 (handle_client) | AUTO_BLOCK | client=127.0.0.1:52114 | service=database | port=8002 | found=credential,credit_card,email,us_ssn
+2026-10-22 20:46:09,832 | INFO | Thread-147 (handle_client) | AUTO | client=127.0.0.1:52126 | service=database | port=8002
+2026-10-22 20:46:09,832 | INFO | Thread-146 (handle_client) | AUTO | client=127.0.0.1:52125 | service=file | port=8003
+2026-10-22 20:46:09,833 | WARNING | Thread-144 (handle_client) | AUTO_BLOCK | client=127.0.0.1:52121 | service=database | port=8002 | found=credential,credit_card,email,us_ssn
+2026-10-22 20:46:09,833 | INFO | Thread-148 (handle_client) | AUTO | client=127.0.0.1:52127 | service=web | port=8001
+2026-10-22 20:46:09,833 | WARNING | Thread-147 (handle_client) | AUTO_BLOCK | client=127.0.0.1:52126 | service=database | port=8002 | found=credential,credit_card,email,us_ssn
+2026-10-22 20:46:09,833 | INFO | Thread-150 (handle_client) | AUTO | client=127.0.0.1:52133 | service=database | port=8002
+2026-10-22 20:46:09,833 | INFO | Thread-149 (handle_client) | AUTO | client=127.0.0.1:52131 | service=file | port=8003
+2026-10-22 20:46:09,834 | INFO | Thread-151 (handle_client) | AUTO | client=127.0.0.1:52136 | service=web | port=8001
+2026-10-22 20:46:09,834 | INFO | Thread-153 (handle_client) | AUTO | client=127.0.0.1:52139 | service=database | port=8002
+2026-10-22 20:46:09,834 | INFO | Thread-154 (handle_client) | AUTO | client=127.0.0.1:52141 | service=web | port=8001
+2026-10-22 20:46:09,834 | WARNING | Thread-150 (handle_client) | AUTO_BLOCK | client=127.0.0.1:52133 | service=database | port=8002 | found=credential,credit_card,email,us_ssn
+2026-10-22 20:46:09,834 | INFO | Thread-152 (handle_client) | AUTO | client=127.0.0.1:52137 | service=file | port=8003
+2026-10-22 20:46:09,835 | INFO | Thread-156 (handle_client) | AUTO | client=127.0.0.1:52145 | service=database | port=8002
+2026-10-22 20:46:09,835 | INFO | Thread-155 (handle_client) | AUTO | client=127.0.0.1:52143 | service=file | port=8003
+2026-10-22 20:46:09,835 | INFO | Thread-157 (handle_client) | AUTO | client=127.0.0.1:52146 | service=web | port=8001
+2026-10-22 20:46:09,839 | INFO | Thread-160 (handle_client) | AUTO | client=127.0.0.1:52152 | service=web | port=8001
+2026-10-22 20:46:09,835 | INFO | Thread-159 (handle_client) | AUTO | client=127.0.0.1:52151 | service=database | port=8002
+2026-10-22 20:46:09,835 | INFO | Thread-158 (handle_client) | AUTO | client=127.0.0.1:52150 | service=file | port=8003
+2026-10-22 20:46:09,839 | INFO | Thread-161 (handle_client) | AUTO | client=127.0.0.1:52156 | service=file | port=8003
+2026-10-22 20:46:09,840 | WARNING | Thread-156 (handle_client) | AUTO_BLOCK | client=127.0.0.1:52145 | service=database | port=8002 | found=credential,credit_card,email,us_ssn
+2026-10-22 20:46:09,839 | WARNING | Thread-153 (handle_client) | AUTO_BLOCK | client=127.0.0.1:52139 | service=database | port=8002 | found=credential,credit_card,email,us_ssn
+2026-10-22 20:46:09,840 | INFO | Thread-163 (handle_client) | AUTO | client=127.0.0.1:52159 | service=web | port=8001
+2026-10-22 20:46:09,840 | INFO | Thread-164 (handle_client) | AUTO | client=127.0.0.1:52161 | service=file | port=8003
+2026-10-22 20:46:09,839 | INFO | Thread-162 (handle_client) | AUTO | client=127.0.0.1:52157 | service=database | port=8002
+2026-10-22 20:46:09,841 | WARNING | Thread-159 (handle_client) | AUTO_BLOCK | client=127.0.0.1:52151 | service=database | port=8002 | found=credential,credit_card,email,us_ssn
+2026-10-22 20:46:09,841 | INFO | Thread-165 (handle_client) | AUTO | client=127.0.0.1:52163 | service=database | port=8002
+2026-10-22 20:46:09,842 | WARNING | Thread-162 (handle_client) | AUTO_BLOCK | client=127.0.0.1:52157 | service=database | port=8002 | found=credential,credit_card,email,us_ssn
+2026-10-22 20:46:09,842 | INFO | Thread-166 (handle_client) | AUTO | client=127.0.0.1:52168 | service=web | port=8001
+2026-10-22 20:46:09,842 | WARNING | Thread-165 (handle_client) | AUTO_BLOCK | client=127.0.0.1:52163 | service=database | port=8002 | found=credential,credit_card,email,us_ssn
+2026-10-22 20:46:09,843 | INFO | Thread-167 (handle_client) | AUTO | client=127.0.0.1:52169 | service=file | port=8003
+2026-10-22 20:46:09,843 | INFO | Thread-168 (handle_client) | AUTO | client=127.0.0.1:52170 | service=database | port=8002
+2026-10-22 20:46:09,843 | INFO | Thread-169 (handle_client) | AUTO | client=127.0.0.1:52171 | service=file | port=8003
+2026-10-22 20:46:09,843 | INFO | Thread-170 (handle_client) | AUTO | client=127.0.0.1:52172 | service=web | port=8001
+2026-10-22 20:46:09,844 | WARNING | Thread-168 (handle_client) | AUTO_BLOCK | client=127.0.0.1:52170 | service=database | port=8002 | found=credential,credit_card,email,us_ssn
+2026-10-22 20:46:09,844 | INFO | Thread-171 (handle_client) | AUTO | client=127.0.0.1:52173 | service=database | port=8002
+2026-10-22 20:46:09,845 | INFO | Thread-172 (handle_client) | AUTO | client=127.0.0.1:52174 | service=web | port=8001
+2026-10-22 20:46:09,845 | WARNING | Thread-171 (handle_client) | AUTO_BLOCK | client=127.0.0.1:52173 | service=database | port=8002 | found=credential,credit_card,email,us_ssn
+2026-10-22 20:46:09,845 | INFO | Thread-173 (handle_client) | AUTO | client=127.0.0.1:52181 | service=file | port=8003
+2026-10-22 20:46:09,845 | INFO | Thread-174 (handle_client) | AUTO | client=127.0.0.1:52184 | service=database | port=8002
+2026-10-22 20:46:09,846 | INFO | Thread-175 (handle_client) | AUTO | client=127.0.0.1:52186 | service=web | port=8001
+2026-10-22 20:46:09,846 | INFO | Thread-176 (handle_client) | AUTO | client=127.0.0.1:52188 | service=file | port=8003
+2026-10-22 20:46:09,846 | WARNING | Thread-174 (handle_client) | AUTO_BLOCK | client=127.0.0.1:52184 | service=database | port=8002 | found=credential,credit_card,email,us_ssn
+2026-10-22 20:46:09,846 | INFO | Thread-177 (handle_client) | AUTO | client=127.0.0.1:52189 | service=database | port=8002
+2026-10-22 20:46:09,847 | INFO | Thread-178 (handle_client) | AUTO | client=127.0.0.1:52190 | service=web | port=8001
+2026-10-22 20:46:09,847 | INFO | Thread-179 (handle_client) | AUTO | client=127.0.0.1:52192 | service=file | port=8003
+2026-10-22 20:46:09,848 | WARNING | Thread-177 (handle_client) | AUTO_BLOCK | client=127.0.0.1:52189 | service=database | port=8002 | found=credential,credit_card,email,us_ssn
+2026-10-22 20:46:09,848 | INFO | Thread-180 (handle_client) | AUTO | client=127.0.0.1:52193 | service=database | port=8002
+2026-10-22 20:46:09,848 | INFO | Thread-181 (handle_client) | AUTO | client=127.0.0.1:52197 | service=web | port=8001
+2026-10-22 20:46:09,848 | WARNING | Thread-180 (handle_client) | AUTO_BLOCK | client=127.0.0.1:52193 | service=database | port=8002 | found=credential,credit_card,email,us_ssn
+2026-10-22 20:46:09,848 | INFO | Thread-182 (handle_client) | AUTO | client=127.0.0.1:52200 | service=file | port=8003
+2026-10-22 20:46:09,849 | INFO | Thread-183 (handle_client) | AUTO | client=127.0.0.1:52204 | service=database | port=8002
+2026-10-22 20:46:09,849 | INFO | Thread-184 (handle_client) | AUTO | client=127.0.0.1:52206 | service=web | port=8001
+2026-10-22 20:46:09,849 | WARNING | Thread-183 (handle_client) | AUTO_BLOCK | client=127.0.0.1:52204 | service=database | port=8002 | found=credential,credit_card,email,us_ssn
+2026-10-22 20:46:09,849 | INFO | Thread-185 (handle_client) | AUTO | client=127.0.0.1:52207 | service=file | port=8003
+2026-10-22 20:46:09,850 | INFO | Thread-186 (handle_client) | AUTO | client=127.0.0.1:52209 | service=database | port=8002
+2026-10-22 20:46:09,850 | INFO | Thread-187 (handle_client) | AUTO | client=127.0.0.1:52211 | service=web | port=8001
+2026-10-22 20:46:09,851 | INFO | Thread-188 (handle_client) | AUTO | client=127.0.0.1:52212 | service=file | port=8003
+2026-10-22 20:46:09,851 | INFO | Thread-189 (handle_client) | AUTO | client=127.0.0.1:52213 | service=database | port=8002
+2026-10-22 20:46:09,851 | WARNING | Thread-186 (handle_client) | AUTO_BLOCK | client=127.0.0.1:52209 | service=database | port=8002 | found=credential,credit_card,email,us_ssn
+2026-10-22 20:46:09,852 | WARNING | Thread-189 (handle_client) | AUTO_BLOCK | client=127.0.0.1:52213 | service=database | port=8002 | found=credential,credit_card,email,us_ssn
+2026-10-22 20:46:09,852 | INFO | Thread-190 (handle_client) | AUTO | client=127.0.0.1:52214 | service=web | port=8001
+2026-10-22 20:46:09,852 | INFO | Thread-191 (handle_client) | AUTO | client=127.0.0.1:52216 | service=database | port=8002
+2026-10-22 20:46:09,852 | INFO | Thread-192 (handle_client) | AUTO | client=127.0.0.1:52217 | service=file | port=8003
+2026-10-22 20:46:09,854 | INFO | Thread-193 (handle_client) | AUTO | client=127.0.0.1:52218 | service=web | port=8001
+2026-10-22 20:46:09,855 | INFO | Thread-194 (handle_client) | AUTO | client=127.0.0.1:52221 | service=file | port=8003
+2026-10-22 20:46:09,856 | INFO | Thread-195 (handle_client) | AUTO | client=127.0.0.1:52222 | service=database | port=8002
+2026-10-22 20:46:09,856 | WARNING | Thread-191 (handle_client) | AUTO_BLOCK | client=127.0.0.1:52216 | service=database | port=8002 | found=credential,credit_card,email,us_ssn
+2026-10-22 20:46:09,856 | INFO | Thread-196 (handle_client) | AUTO | client=127.0.0.1:52225 | service=web | port=8001
+2026-10-22 20:46:09,857 | INFO | Thread-197 (handle_client) | AUTO | client=127.0.0.1:52226 | service=file | port=8003
+2026-10-22 20:46:09,857 | WARNING | Thread-195 (handle_client) | AUTO_BLOCK | client=127.0.0.1:52222 | service=database | port=8002 | found=credential,credit_card,email,us_ssn
+2026-10-22 20:46:09,857 | INFO | Thread-198 (handle_client) | AUTO | client=127.0.0.1:52229 | service=database | port=8002
+2026-10-22 20:46:09,857 | INFO | Thread-199 (handle_client) | AUTO | client=127.0.0.1:52232 | service=web | port=8001
+2026-10-22 20:46:09,857 | INFO | Thread-200 (handle_client) | AUTO | client=127.0.0.1:52234 | service=file | port=8003
+2026-10-22 20:46:09,858 | WARNING | Thread-198 (handle_client) | AUTO_BLOCK | client=127.0.0.1:52229 | service=database | port=8002 | found=credential,credit_card,email,us_ssn
+2026-10-22 20:46:09,858 | INFO | Thread-201 (handle_client) | AUTO | client=127.0.0.1:52239 | service=database | port=8002
+2026-10-22 20:46:09,858 | INFO | Thread-202 (handle_client) | AUTO | client=127.0.0.1:52240 | service=web | port=8001
+2026-10-22 20:46:09,858 | INFO | Thread-203 (handle_client) | AUTO | client=127.0.0.1:52241 | service=file | port=8003
+2026-10-22 20:46:09,858 | WARNING | Thread-201 (handle_client) | AUTO_BLOCK | client=127.0.0.1:52239 | service=database | port=8002 | found=credential,credit_card,email,us_ssn
