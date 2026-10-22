@@ -1,3 +1,4 @@
+import os
 import socket
 import threading
 
@@ -9,122 +10,101 @@ except ImportError:
 
 HOST = "0.0.0.0"
 BUFFER_SIZE = 4096
+MAX_REQUEST_BYTES = 1024
+CLIENT_TIMEOUT = 5
+VERBOSE = os.environ.get("CN_SERVER_QUIET") != "1"   # set to 1 for benchmarks
+
+
+def recv_request(conn):
+    """Read until newline/EOF so fragmented requests are handled."""
+
+    data = b""
+
+    while b"\n" not in data and len(data) < MAX_REQUEST_BYTES:
+
+        chunk = conn.recv(BUFFER_SIZE)
+
+        if not chunk:
+            break
+
+        data += chunk
+
+    return data
 
 
 def handle_client(conn, address, port):
 
     with conn:
 
+        conn.settimeout(CLIENT_TIMEOUT)
+
         try:
 
-            data = conn.recv(BUFFER_SIZE)
+            data = recv_request(conn)
 
             if not data:
                 return
 
-            request = data.decode(
-                "utf-8",
-                errors="replace"
-            ).strip()
+            request = data.decode("utf-8", errors="replace").strip()
 
-            response = (
-                f"{response_for_port(port)}\n"
-                f"Received: {request}"
-            )
+            response = f"{response_for_port(port)}\nReceived: {request}"
 
-            conn.sendall(
-                response.encode("utf-8")
-            )
+            conn.sendall(response.encode("utf-8"))
 
-            print(
-                f"[{address[0]}:{address[1]}] "
-                f"port={port} request={request}"
-            )
+            if VERBOSE:
+                print(
+                    f"[{address[0]}:{address[1]}] "
+                    f"port={port} request={request}"
+                )
 
-        except OSError as exc:
+        except OSError as exc:   # includes socket.timeout
 
-            print(
-                f"Connection error from "
-                f"{address}: {exc}"
-            )
+            print(f"Connection error from {address}: {exc}")
 
 
-def serve_port(port):
+def serve_port(port, service_name):
 
-    with socket.socket(
-        socket.AF_INET,
-        socket.SOCK_STREAM
-    ) as server_sock:
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as server_sock:
 
-        server_sock.setsockopt(
-            socket.SOL_SOCKET,
-            socket.SO_REUSEADDR,
-            1
-        )
+        server_sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+        server_sock.bind((HOST, port))
+        server_sock.listen(100)
 
-        server_sock.bind(
-            (HOST, port)
-        )
-
-        server_sock.listen(50)
-
-        service_name = next(
-            name
-            for name, info in SERVICES.items()
-            if info["port"] == port
-        )
-
-        print(
-            f"{service_name} service listening "
-            f"on {HOST}:{port}"
-        )
+        print(f"{service_name} service listening on {HOST}:{port}")
 
         while True:
 
-            conn, address = (
-                server_sock.accept()
-            )
+            conn, address = server_sock.accept()
 
-            thread = threading.Thread(
+            threading.Thread(
                 target=handle_client,
-                args=(
-                    conn,
-                    address,
-                    port
-                ),
-                daemon=True
-            )
-
-            thread.start()
+                args=(conn, address, port),
+                daemon=True,
+            ).start()
 
 
 def main():
 
     threads = []
 
-    for service in SERVICES.values():
+    for name, info in SERVICES.items():
 
         thread = threading.Thread(
             target=serve_port,
-            args=(service["port"],),
-            daemon=True
+            args=(info["port"], name),
+            daemon=True,
         )
 
         thread.start()
-
         threads.append(thread)
 
-    print(
-        "All simulated services are running."
-    )
+    print("All simulated services are running.")
 
     try:
-
         for thread in threads:
             thread.join()
 
     except KeyboardInterrupt:
-
         print("\nServer stopped.")
 
 

@@ -1,4 +1,9 @@
+MAX_REQUEST_BYTES = 1024
+
+
 def parse_request(data: str) -> dict:
+    """Parse 'service=<name>;port=<number>' into {'service': str, 'port': int}."""
+
     if not isinstance(data, str):
         raise ValueError("Request must be text")
 
@@ -29,6 +34,9 @@ def parse_request(data: str) -> dict:
         if not value:
             raise ValueError(f"Missing value for {key}")
 
+        if key in fields:
+            raise ValueError(f"Duplicate field: {key}")
+
         fields[key] = value
 
     if "service" not in fields or "port" not in fields:
@@ -44,7 +52,4 @@ def parse_request(data: str) -> dict:
     if not 1 <= port <= 65535:
         raise ValueError("Port must be between 1 and 65535")
 
-    return {
-        "service": service,
-        "port": port
-    }
+    return {"service": service, "port": port}

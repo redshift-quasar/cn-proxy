@@ -1,20 +1,15 @@
 SERVICES = {
     "web": {
         "port": 8001,
-        "response":
-            "Web service: request received successfully.",
+        "response": "Web service: request received successfully.",
     },
-
     "database": {
         "port": 8002,
-        "response":
-            "Database service: request received successfully.",
+        "response": "Database service: request received successfully.",
     },
-
     "file": {
         "port": 8003,
-        "response":
-            "File service: request received successfully.",
+        "response": "File service: request received successfully.",
     },
 }
 
