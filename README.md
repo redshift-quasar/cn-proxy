@@ -250,6 +250,27 @@ Database → ALLOW
 
 This demonstrates dynamic interaction between the application and SDN-controlled network.
 
+### Implemented behavior
+
+The proxy reloads `config/policies.yaml` when it evaluates a request. The
+OS-Ken controller reads the same file periodically (every second by default),
+so switch rules also change without a restart or incoming client requests.
+The integrated Mininet demo uses a 0.2-second controller polling interval.
+Invalid YAML keeps the last valid configuration in each process.
+
+`allow` forwards without inspection, `deny` rejects the request, and `auto`
+lets the proxy inspect the backend response and block or redact sensitive
+content. `auto` decisions do **not** rewrite the YAML or permanently deny a
+service at the switch. Policy edits are made by the operator.
+
+The controller applies IPv4 TCP policy in table 0 before MAC learning in
+table 1. With the supplied `default_action: deny`, only allowed/auto service
+ports are reachable from the proxy. Direct client TCP access to the backend
+is blocked. Content inspection and service-name checks remain in the proxy.
+
+See [the SDN/Mininet runbook](docs/sdn-mininet.md) for commands, flow-table
+inspection, layer limitations, and the runtime allow/deny demonstration.
+
 ---
 
 ## Concurrency
@@ -271,6 +292,29 @@ The implementation will use concurrent connection handling so that one client do
 ---
 
 ## Testing
+
+Run the automated suite using the controller environment:
+
+```bash
+.venv-controller/bin/python -m unittest discover -s tests -v
+```
+
+These tests cover policy reload, OpenFlow message encoding and table behavior,
+controller polling over a real localhost OpenFlow connection, proxy forwarding,
+concurrency, and content inspection. They need permission to bind localhost
+sockets, but do not need root or a running Open vSwitch.
+
+Run the full Mininet/Open vSwitch smoke test in a root-capable terminal:
+
+```bash
+sudo python3 mininet/run_demo.py --smoke-test --switch-name cnptest1 --controller-port 16653
+```
+
+The smoke test starts its own controller, server, and proxy, uses a temporary
+policy file, checks runtime rule removal/restoration and actual TCP drops, and
+stops its own processes and network afterward. It refuses to reuse an existing
+bridge or occupied controller port. The scenarios below also describe planned
+robustness and performance work.
 
 The system will be tested under multiple conditions.
 
@@ -342,9 +386,9 @@ This allows the overhead introduced by proxying and policy enforcement to be mea
 | Network Emulator     | Mininet             |
 | Virtual Switch       | Open vSwitch        |
 | SDN                  | OpenFlow            |
-| SDN Controller       | Ryu                 |
+| SDN Controller       | OS-Ken (Ryu fork)   |
 | Configuration        | YAML / JSON         |
-| Testing              | Python / pytest     |
+| Testing              | Python / unittest   |
 | Network Analysis     | Wireshark / tcpdump |
 | Performance Testing  | Python / iperf3     |
 
@@ -362,6 +406,7 @@ cn-proxy/
 │   ├── proxy.py
 │   ├── parser.py
 │   ├── policy.py
+│   ├── classifier.py
 │   └── logger.py
 │
 ├── server/
@@ -369,20 +414,26 @@ cn-proxy/
 │   └── services.py
 │
 ├── controller/
-│   ├── controller.py
+│   ├── run_controller.py
+│   ├── simple_switch.py
 │   └── flow_manager.py
 │
 ├── mininet/
-│   └── topology.py
+│   ├── topology.py
+│   └── run_demo.py
 │
 ├── config/
 │   └── policies.yaml
 │
 ├── tests/
+│   ├── test_sdn.py
+│   ├── test_controller_wire.py
+│   └── test_proxy_integration.py
 │
 ├── experiments/
 │
 ├── docs/
+│   └── sdn-mininet.md
 │
 └── README.md
 ```
