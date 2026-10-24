@@ -206,3 +206,27 @@
 2026-10-22 09:37:28,489 | INFO | Thread-205 (handle_client) | ALLOW | client=127.0.0.1:50107 | service=file | port=8003
 2026-10-22 09:38:02,208 | INFO | Thread-206 (handle_client) | ALLOW | client=127.0.0.1:50157 | service=web | port=8001
 2026-10-22 09:38:02,209 | ERROR | Thread-206 (handle_client) | SERVER_ERROR | service=web | port=8001 | error=[Errno 61] Connection refused
+2026-10-24 10:17:19,176 | INFO | MainThread | TCP proxy listening on 0.0.0.0:9000; server=10.0.0.3
+2026-10-24 10:17:19,482 | INFO | Thread-2 (handle_client) | ALLOW | client=10.0.0.1:52530 | service=database | port=8002
+2026-10-24 10:17:19,543 | INFO | Thread-3 (handle_client) | AUTO | client=10.0.0.1:52532 | service=file | port=8003
+2026-10-24 10:17:20,345 | INFO | Thread-4 (handle_client) | ALLOW | client=10.0.0.1:52540 | service=web | port=8001
+2026-10-24 10:17:20,349 | INFO | Thread-5 (handle_client) | ALLOW | client=10.0.0.1:52548 | service=web | port=8001
+2026-10-24 10:17:20,352 | INFO | Thread-6 (handle_client) | ALLOW | client=10.0.0.1:52560 | service=web | port=8001
+2026-10-24 10:17:20,352 | INFO | Thread-7 (handle_client) | ALLOW | client=10.0.0.1:52564 | service=web | port=8001
+2026-10-24 10:17:20,358 | INFO | Thread-8 (handle_client) | ALLOW | client=10.0.0.1:52580 | service=web | port=8001
+2026-10-24 10:17:20,366 | INFO | Thread-9 (handle_client) | ALLOW | client=10.0.0.1:52582 | service=web | port=8001
+2026-10-24 10:17:21,349 | INFO | Thread-10 (handle_client) | POLICY_CHANGED | service=database | port=8002 | ALLOW -> DENY
+2026-10-24 10:17:21,349 | INFO | Thread-10 (handle_client) | DENY | client=10.0.0.1:52596 | service=database | port=8002
+2026-10-24 10:17:21,395 | INFO | Thread-11 (handle_client) | ALLOW | client=10.0.0.1:52606 | service=web | port=8001
+2026-10-24 10:17:21,643 | INFO | Thread-12 (handle_client) | POLICY_CHANGED | service=database | port=8002 | DENY -> ALLOW
+2026-10-24 10:17:21,643 | INFO | Thread-12 (handle_client) | ALLOW | client=10.0.0.1:52614 | service=database | port=8002
+2026-10-24 10:17:21,687 | INFO | Thread-13 (handle_client) | POLICY_CHANGED | service=database | port=8002 | ALLOW -> AUTO
+2026-10-24 10:17:21,688 | INFO | Thread-13 (handle_client) | AUTO | client=10.0.0.1:52620 | service=database | port=8002
+2026-10-24 10:17:21,688 | WARNING | Thread-13 (handle_client) | AUTO_BLOCK | client=10.0.0.1:52620 | service=database | port=8002 | found=credential,credit_card,email,us_ssn
+2026-10-24 10:17:21,730 | INFO | Thread-14 (handle_client) | AUTO | client=10.0.0.1:52630 | service=database | port=8002
+2026-10-24 10:17:21,730 | WARNING | Thread-14 (handle_client) | AUTO_REDACT | client=10.0.0.1:52630 | service=database | port=8002 | found=credential,credit_card,email,us_ssn
+2026-10-24 10:17:22,272 | ERROR | Thread-15 (handle_client) | POLICY_RELOAD_FAILED | keeping previous rules | while parsing a flow node
+expected the node content, but found '<stream end>'
+  in "/tmp/cn-proxy-demo-c05vqpp5/policies.yaml", line 1, column 9
+2026-10-24 10:17:22,272 | INFO | Thread-15 (handle_client) | AUTO | client=10.0.0.1:52638 | service=database | port=8002
+2026-10-24 10:17:22,272 | WARNING | Thread-15 (handle_client) | AUTO_REDACT | client=10.0.0.1:52638 | service=database | port=8002 | found=credential,credit_card,email,us_ssn
