@@ -1,0 +1,44 @@
+test_controller_wire (unittest.loader._FailedTest.test_controller_wire) ... ERROR
+test_allow_deny_allow_hot_reload (test_proxy_integration.ProxyIntegrationTests.test_allow_deny_allow_hot_reload) ... ok
+test_auto_block_redact_and_invalid_yaml_retains_last_policy (test_proxy_integration.ProxyIntegrationTests.test_auto_block_redact_and_invalid_yaml_retains_last_policy) ... AUTO_BLOCK | client=127.0.0.1:12345 | service=web | port=50891 | found=credential
+AUTO_REDACT | client=127.0.0.1:12345 | service=web | port=50891 | found=credential
+AUTO_REDACT | client=127.0.0.1:12345 | service=web | port=50891 | found=credential
+ok
+test_concurrent_clients_and_invalid_request (test_proxy_integration.ProxyIntegrationTests.test_concurrent_clients_and_invalid_request) ... INVALID | client=127.0.0.1:12345 | request='service=web;port=nope' | error=Port must be an integer
+ok
+test_sdn (unittest.loader._FailedTest.test_sdn) ... ERROR
+
+======================================================================
+ERROR: test_controller_wire (unittest.loader._FailedTest.test_controller_wire)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_controller_wire
+Traceback (most recent call last):
+  File "/usr/lib/python3.14/unittest/loader.py", line 426, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "/usr/lib/python3.14/unittest/loader.py", line 367, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "/home/bhamini/cn-proxy/tests/test_controller_wire.py", line 14, in <module>
+    from os_ken.ofproto import ofproto_v1_3 as ofp
+ModuleNotFoundError: No module named 'os_ken'
+
+
+======================================================================
+ERROR: test_sdn (unittest.loader._FailedTest.test_sdn)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_sdn
+Traceback (most recent call last):
+  File "/usr/lib/python3.14/unittest/loader.py", line 426, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "/usr/lib/python3.14/unittest/loader.py", line 367, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "/home/bhamini/cn-proxy/tests/test_sdn.py", line 11, in <module>
+    from os_ken.lib.packet import ethernet, ether_types, ipv4, packet, tcp
+ModuleNotFoundError: No module named 'os_ken'
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 1.537s
+
+FAILED (errors=2)
