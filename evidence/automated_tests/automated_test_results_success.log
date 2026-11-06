@@ -1,0 +1,34 @@
+test_live_default_only_change_sends_broad_proxy_permit (test_controller_wire.ControllerWireTests.test_live_default_only_change_sends_broad_proxy_permit) ... ok
+test_live_polling_sends_allow_deny_allow_without_requests (test_controller_wire.ControllerWireTests.test_live_polling_sends_allow_deny_allow_without_requests) ... ok
+test_sigint_stops_controller_without_native_thread_cleanup_error (test_controller_wire.ControllerWireTests.test_sigint_stops_controller_without_native_thread_cleanup_error) ... ok
+test_allow_deny_allow_hot_reload (test_proxy_integration.ProxyIntegrationTests.test_allow_deny_allow_hot_reload) ... ok
+test_auto_block_redact_and_invalid_yaml_retains_last_policy (test_proxy_integration.ProxyIntegrationTests.test_auto_block_redact_and_invalid_yaml_retains_last_policy) ... AUTO_BLOCK | client=127.0.0.1:12345 | service=web | port=53417 | found=credential
+AUTO_REDACT | client=127.0.0.1:12345 | service=web | port=53417 | found=credential
+AUTO_REDACT | client=127.0.0.1:12345 | service=web | port=53417 | found=credential
+ok
+test_concurrent_clients_and_invalid_request (test_proxy_integration.ProxyIntegrationTests.test_concurrent_clients_and_invalid_request) ... INVALID | client=127.0.0.1:12345 | request='service=web;port=nope' | error=Port must be an integer
+ok
+test_invalid_update_keeps_flows_and_unchanged_policy_sends_nothing (test_sdn.ControllerTests.test_invalid_update_keeps_flows_and_unchanged_policy_sends_nothing) ... POLICY_RELOAD_FAILED | keeping previous rules | while parsing a flow node
+expected the node content, but found '<stream end>'
+  in "/tmp/tmpu5ls943h/policies.yaml", line 1, column 9
+ok
+test_packet_learning_is_in_table_one_and_lldp_is_ignored (test_sdn.ControllerTests.test_packet_learning_is_in_table_one_and_lldp_is_ignored) ... ok
+test_queued_packet_in_cannot_bypass_deny_or_proxy_requirement (test_sdn.ControllerTests.test_queued_packet_in_cannot_bypass_deny_or_proxy_requirement) ... ok
+test_reconnect_clears_mac_learning_and_ignores_old_disconnect (test_sdn.ControllerTests.test_reconnect_clears_mac_learning_and_ignores_old_disconnect) ... ok
+test_refresh_all_switches_without_proxy_requests (test_sdn.ControllerTests.test_refresh_all_switches_without_proxy_requests) ... ok
+test_removed_rule_and_default_only_changes (test_sdn.ControllerTests.test_removed_rule_and_default_only_changes) ... ok
+test_watcher_uses_event_queue_and_stops (test_sdn.ControllerTests.test_watcher_uses_event_queue_and_stops) ... ok
+test_allow_deny_allow_overrides_an_existing_learning_flow (test_sdn.FlowTests.test_allow_deny_allow_overrides_an_existing_learning_flow) ... ok
+test_auto_and_shared_port_are_left_to_proxy_inspection (test_sdn.FlowTests.test_auto_and_shared_port_are_left_to_proxy_inspection) ... ok
+test_default_allow_to_deny_and_back (test_sdn.FlowTests.test_default_allow_to_deny_and_back) ... ok
+test_direct_backend_and_unknown_ports_blocked_but_arp_and_icmp_work (test_sdn.FlowTests.test_direct_backend_and_unknown_ports_blocked_but_arp_and_icmp_work) ... ok
+test_reconnect_removes_only_owned_cookies (test_sdn.FlowTests.test_reconnect_removes_only_owned_cookies) ... ok
+test_default_changes_reload_without_requests_and_copies_are_isolated (test_sdn.SnapshotTests.test_default_changes_reload_without_requests_and_copies_are_isolated) ... ok
+test_initial_invalid_policy_fails (test_sdn.SnapshotTests.test_initial_invalid_policy_fails) ... ok
+test_invalid_or_missing_policy_keeps_last_valid_snapshot (test_sdn.SnapshotTests.test_invalid_or_missing_policy_keeps_last_valid_snapshot) ... ok
+test_runtime_allow_deny_allow_and_listener (test_sdn.SnapshotTests.test_runtime_allow_deny_allow_and_listener) ... ok
+
+----------------------------------------------------------------------
+Ran 22 tests in 1.475s
+
+OK

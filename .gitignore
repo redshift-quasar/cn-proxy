@@ -3,3 +3,9 @@ __pycache__/
 
 #Virtual Enviroments
 .venv-controller/
+# Additional virtual environments
+.venv/
+.venv-*/
+
+# Python bytecode
+*.pyc

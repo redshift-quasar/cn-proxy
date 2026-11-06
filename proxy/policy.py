@@ -197,3 +197,14 @@ class PolicyEngine:
 
         with self._lock:
             return dict(self._rules)
+
+    def snapshot(self):
+        """Return consistent copies of rules and settings for SDN consumers.
+
+        Reloads even without client requests, including default_action changes
+        which do not produce per-rule listener notifications.
+        """
+        self._reload_if_needed()
+
+        with self._lock:
+            return dict(self._rules), dict(self._settings)
