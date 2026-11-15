@@ -1,3 +1,7 @@
+> Historical project evaluation, preserved as evidence. Use [DEMO.md](../DEMO.md)
+> for current commands and verification boundaries. Measurements predate the shared
+> client limits and do not establish current performance.
+
 # Member 3 – Integration, Testing and Evaluation
 
 ## 1. Role and Responsibilities

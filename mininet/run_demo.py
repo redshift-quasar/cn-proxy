@@ -6,6 +6,7 @@ Use the system Python with Mininet installed. The controller uses its own venv.
 import argparse
 import importlib.util
 import os
+import re
 from pathlib import Path
 import socket
 import subprocess
@@ -76,6 +77,7 @@ def write_smoke_policy(path, action, on_sensitive="block"):
     data = {
         "default_action": "deny",
         "inspection": {"on_sensitive": on_sensitive},
+        "protection": {"max_connections_per_client": 10},
         "rules": [
             {"service": "web", "port": 8001, "action": "allow"},
             {"service": "database", "port": 8002, "action": action},
@@ -164,7 +166,17 @@ def main():
                         help="Host Python, with PyYAML installed")
     parser.add_argument("--controller-port", type=int, default=6653)
     parser.add_argument("--switch-name", default="s1")
+    parser.add_argument("--extra-clients", type=int, default=0,
+                        help="Add h4 onward as independent clients (0..250)")
+    parser.add_argument("--http-port", type=int, default=0,
+                        help="Enable HTTP forward proxy, e.g. 8080")
     args = parser.parse_args()
+    if not re.fullmatch(r"[A-Za-z][A-Za-z0-9_-]{0,9}", args.switch_name):
+        parser.error("--switch-name must start with a letter and contain at most 10 letters, digits, _ or -")
+    if not 0 <= args.http_port <= 65535 or args.http_port == 9000:
+        parser.error("--http-port must be 0 (disabled) or a port other than 9000")
+    if not 0 <= args.extra_clients <= 250:
+        parser.error("--extra-clients must be between 0 and 250")
     if os.geteuid() != 0:
         parser.error("Mininet needs root; run with sudo and the system Python")
     if not 1 <= args.controller_port <= 65535:
@@ -227,7 +239,7 @@ def main():
                 return False
 
         wait_until(controller_ready, "controller listener")
-        net = Mininet(topo=topology.CNProxyTopo(switch_name=args.switch_name),
+        net = Mininet(topo=topology.CNProxyTopo(switch_name=args.switch_name, extra_clients=args.extra_clients),
                       controller=None, switch=OVSSwitch, autoSetMacs=True, build=False)
         net.addController("c0", controller=RemoteController,
                           ip="127.0.0.1", port=args.controller_port)
@@ -238,9 +250,12 @@ def main():
         h1, h2, h3 = net.get("h1", "h2", "h3")
         launch("server", [args.python, "-m", "server.server"], h3)
         launch("proxy", [args.python, "-m", "proxy.proxy", "--server-host",
-                          "10.0.0.3", "--policy", str(policy)], h2)
+                          "10.0.0.3", "--policy", str(policy), "--http-port", str(args.http_port)], h2)
         wait_until(lambda: can_connect(h1, args.python, "10.0.0.2", 9000),
                    "proxy listener")
+        if args.http_port:
+            wait_until(lambda: can_connect(h1, args.python, "10.0.0.2", args.http_port),
+                       "HTTP proxy listener")
         # Check services locally so startup also works with every policy DENY.
         for port in (8001, 8002, 8003):
             wait_until(lambda port=port: can_connect(h3, args.python, "127.0.0.1", port),

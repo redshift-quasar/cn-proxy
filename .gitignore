@@ -1,11 +1,14 @@
-#Python
+# Python bytecode and caches
 __pycache__/
+*.py[cod]
+.pytest_cache/
 
-#Virtual Enviroments
-.venv-controller/
-# Additional virtual environments
+# Local virtual environments
 .venv/
 .venv-*/
 
-# Python bytecode
-*.pyc
+# Runtime output; historical logs under evidence/ and experiments/ stay tracked
+/logs/*
+
+# Local patch bundles already applied to the source
+/cn-proxy-fixed.patch

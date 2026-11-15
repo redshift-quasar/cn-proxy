@@ -50,6 +50,9 @@ def main():
 
     args = arg_parser.parse_args()
 
+    if not 1 <= args.proxy_port <= 65535 or not 1 <= args.port <= 65535:
+        arg_parser.error("Ports must be between 1 and 65535")
+
     try:
         request, response = send_request(
             args.host, args.proxy_port, args.service, args.port

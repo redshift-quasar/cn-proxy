@@ -7,6 +7,7 @@ import socket
 import socketserver
 import tempfile
 import threading
+import time
 import unittest
 from unittest.mock import patch
 
@@ -100,6 +101,44 @@ class ProxyIntegrationTests(unittest.TestCase):
         self.assertTrue(all("Safe backend response" in response for response in responses))
         self.assertIn("ERROR:", self.request(b"service=web;port=nope\n"))
         self.assertIn("DENIED:", self.request(f"service=unknown;port={self.port}\n".encode()))
+
+    def test_fragmented_and_oversized_custom_requests(self):
+        self.assertIn("ERROR: Request too large", self.request(b'x' * 1025))
+        self.assertIn("ERROR: Only one request", self.request(b'service=web;port=1\nextra'))
+        from proxy.proxy import recv_request
+        client, accepted = socket.socketpair()
+        with client, accepted:
+            def write_fragments():
+                client.sendall(b'service=web;')
+                time.sleep(0.03)
+                client.sendall(b'port=8001\n')
+            thread = threading.Thread(target=write_fragments)
+            thread.start()
+            self.assertEqual(recv_request(accepted), b'service=web;port=8001\n')
+            thread.join()
+
+    def test_slow_backend_has_total_deadline(self):
+        from proxy.proxy import forward_to_server
+        class SlowBackend(socketserver.BaseRequestHandler):
+            def handle(self):
+                self.request.recv(4096)
+                for _ in range(20):
+                    try:
+                        self.request.sendall(b'x')
+                    except OSError:
+                        break
+                    time.sleep(0.04)
+        with socketserver.ThreadingTCPServer(('127.0.0.1', 0), SlowBackend) as server:
+            thread = threading.Thread(target=server.serve_forever)
+            thread.start()
+            try:
+                start = time.monotonic()
+                with self.assertRaises(socket.timeout):
+                    forward_to_server('127.0.0.1', server.server_address[1], 'demo\n', timeout=0.15)
+                self.assertLess(time.monotonic() - start, 0.6)
+            finally:
+                server.shutdown()
+                thread.join()
 
 
 if __name__ == "__main__":

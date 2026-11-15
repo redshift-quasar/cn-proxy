@@ -2,6 +2,28 @@ from pathlib import Path
 import threading
 import yaml
 
+try:
+    from .protection import parse_settings
+except ImportError:
+    from protection import parse_settings
+
+
+class PolicyLoader(yaml.SafeLoader):
+    """Reject duplicate keys rather than silently overwriting a policy."""
+
+
+def _mapping(loader, node):
+    result = {}
+    for key_node, value_node in node.value:
+        key = loader.construct_object(key_node)
+        if key in result:
+            raise ValueError(f"Duplicate YAML key: {key}")
+        result[key] = loader.construct_object(value_node)
+    return result
+
+
+PolicyLoader.add_constructor(yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG, _mapping)
+
 VALID_ACTIONS = {"ALLOW", "DENY", "AUTO"}
 
 
@@ -48,20 +70,26 @@ class PolicyEngine:
     @staticmethod
     def _parse(data):
 
-        data = data or {}
+        data = {} if data is None else data
 
         if not isinstance(data, dict):
             raise ValueError("Policy file must be a mapping")
+
+        if set(data) - {"default_action", "inspection", "rules", "protection"}:
+            raise ValueError("Unknown policy setting")
 
         default_action = str(data.get("default_action", "deny")).upper()
 
         if default_action not in VALID_ACTIONS:
             raise ValueError("default_action must be ALLOW, DENY or AUTO")
 
-        inspection = data.get("inspection") or {}
+        inspection = data.get("inspection", {})
 
         if not isinstance(inspection, dict):
             raise ValueError("'inspection' must be a mapping")
+
+        if set(inspection) - {"on_sensitive"}:
+            raise ValueError("Unknown inspection setting")
 
         on_sensitive = str(inspection.get("on_sensitive", "block")).lower()
 
@@ -80,19 +108,20 @@ class PolicyEngine:
             if not isinstance(rule, dict):
                 raise ValueError(f"Rule #{index + 1} must be a mapping")
 
+            if set(rule) != {"service", "port", "action"}:
+                raise ValueError(f"Rule #{index + 1}: expected service, port and action")
+
             service = str(rule.get("service", "")).strip().lower()
             action = str(rule.get("action", "")).strip().upper()
 
             if not service:
                 raise ValueError(f"Rule #{index + 1}: missing service")
 
-            try:
-                port = int(rule.get("port"))
-            except (TypeError, ValueError):
-                raise ValueError(f"Rule #{index + 1}: invalid port")
-
-            if not 1 <= port <= 65535:
-                raise ValueError(f"Rule #{index + 1}: port out of range")
+            port = rule.get("port")
+            if type(port) is not int or not 1 <= port <= 65535:
+                raise ValueError(f"Rule #{index + 1}: port must be an integer between 1 and 65535")
+            if (service, port) in new_rules:
+                raise ValueError(f"Rule #{index + 1}: duplicate service/port")
 
             if action not in VALID_ACTIONS:
                 raise ValueError(
@@ -104,6 +133,7 @@ class PolicyEngine:
         return new_rules, {
             "default_action": default_action,
             "on_sensitive": on_sensitive,
+            "protection": parse_settings(data.get("protection")),
         }
 
     def _load(self, initial=False):
@@ -125,16 +155,19 @@ class PolicyEngine:
             self._mtime_ns = mtime_ns
 
             with self.config_path.open("r", encoding="utf-8") as file:
-                data = yaml.safe_load(file)
+                data = yaml.load(file, Loader=PolicyLoader)
 
             new_rules, new_settings = self._parse(data)
 
+            old_settings = self._settings
             old_rules = self._rules
             self._rules = new_rules
             self._settings = new_settings
 
             if not initial:
                 self._notify(old_rules, new_rules)
+                if old_settings != new_settings and self.logger:
+                    self.logger.info("POLICY_SETTINGS_CHANGED | %s", new_settings)
 
     def _reload_if_needed(self):
 
@@ -207,4 +240,6 @@ class PolicyEngine:
         self._reload_if_needed()
 
         with self._lock:
-            return dict(self._rules), dict(self._settings)
+            settings = dict(self._settings)
+            settings["protection"] = dict(settings["protection"])
+            return dict(self._rules), settings
